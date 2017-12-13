@@ -17,14 +17,16 @@ class CriarTabelaUsuarios extends Migration
             $table->increments('id_usuario');
             $table->string('nome');
             $table->string('email')->unique();
-            $table->string('usuario');->unique();
-            $table->string('senha');
+            $table->string('usuario')->unique();
+            $table->string('password');
             $table->integer('id_grupo')->unsigned();
             $table->rememberToken();
             $table->timestamps();
+        });
 
-            $table->foreign('id_grupo')->references('id_grupo')->on('grupos')
-                ->onDelete('cascade');
+        Schema::table('usuarios', function (Blueprint $table) {
+            $table->foreign('id_grupo')->references('id_grupo')->on('grupos');
+
         });
     }
 

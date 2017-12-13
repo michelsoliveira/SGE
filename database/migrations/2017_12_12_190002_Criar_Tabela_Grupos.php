@@ -17,12 +17,13 @@ class CriarTabelaGrupos extends Migration
         Schema::Create('grupos', function (Blueprint $table){
             $table->increments('id_grupo');
             $table->string('nome')->unique();
-            $table->string('descricao')
+            $table->string('descricao');
             $table->integer('id_permissao')->unsigned();
             $table->timestamps();
+        });
 
-            $table->foreign('id_permissao')->references('id_permissao')->on('permissoes')
-                ->onDelete('cascade');
+        Schema::table('grupos', function (Blueprint $table) {
+            $table->foreign('id_permissao')->references('id_permissao')->on('permissoes');
 
         });
     }
