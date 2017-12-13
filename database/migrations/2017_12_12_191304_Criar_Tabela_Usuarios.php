@@ -15,14 +15,15 @@ class CriarTabelaUsuarios extends Migration
     {
         Schema::create('usuarios', function (Blueprint $table) {
             $table->increments('id_usuario');
+            $table->string('nome');
             $table->string('email')->unique();
-            $table->string('nomeusuario')
+            $table->string('usuario');->unique();
             $table->string('senha');
-            $table->integer('grupo_id')->unsigned();
+            $table->integer('id_grupo')->unsigned();
             $table->rememberToken();
             $table->timestamps();
 
-            $table->foreign('grupo_id')->references('id_grupo')->on('produtos')
+            $table->foreign('id_grupo')->references('id_grupo')->on('grupos')
                 ->onDelete('cascade');
         });
     }
