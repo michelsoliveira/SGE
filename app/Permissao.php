@@ -8,5 +8,7 @@ class Permissao extends Model
 {
     //
 
-    protected $fillable ['area', 'descricao'];
+    protected $fillable = ['area', 'descricao'];
+
+    protected $table = 'permissoes';
 }
